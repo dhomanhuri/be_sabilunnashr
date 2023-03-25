@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Event2Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ Route::resource("user", UserController::class);
 Route::resource("paket", PaketController::class);
 Route::resource("member", MemberController::class);
 Route::resource("ramadhan", RamadhanController::class);
+Route::resource("event2", Event2Controller::class);
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::post('register', [AuthController::class, 'register'] );
