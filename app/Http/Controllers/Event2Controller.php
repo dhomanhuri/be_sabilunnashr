@@ -16,7 +16,7 @@ class Event2Controller extends Controller
         //
         $data = event2::all();
         return response()->json([
-            "status"=>true,
+            "status"=>"success",
             "data"=>$data
         ], 200);
     }
@@ -44,27 +44,29 @@ class Event2Controller extends Controller
             'job' => 'required',
             'age' => 'required',
             'gender' => 'required',
-            'upload_file' => 'required',
+            'upload_file' => 'required|mimes:jpeg,png,jpg,gif',
             'reason' => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json([
-                "status" => false,
-                "message"=>$validator->messages()->first()
-            ],400);
+                "status" => "failed",
+                "data"=>$validator->messages()->first()
+            ]);
         }
+        $data = $request->all();
+        $data['upload_file'] = $request->file('upload_file')->store('img');
+        
+        $ramadhan = event2::create($data);
 
-        $eventstore = Event2::create($request->all());
-
-        if ($eventstore) {
+        if ($ramadhan) {
             return response()->json([
-                "status"=>true,
+                "status"=>"success",
                 "message"=>"register success"
             ], 200);
         }else {
             return response()->json([
-                "status"=>false,
+                "status"=>"failed",
                 "message"=>"register failed"
             ], 400);
         }
@@ -79,12 +81,12 @@ class Event2Controller extends Controller
         $data = Event2::find($id);
         if ($data) {
             return response()->json([
-                "status"=>true,
+                "status"=>"success",
                 "data"=>$data
             ], 200);
         }else {
             return response()->json([
-                "status"=>false,
+                "status"=>"failed",
                 "message"=>"data event member not found"
             ], 400);
         }
@@ -107,20 +109,20 @@ class Event2Controller extends Controller
         $event2 = Event2::find($id);
         if (!$event2) {
             return response()->json([
-                "status"=>false,
+                "status"=>"failed",
                 "message"=>"data not found"
             ], 400);
         }
         $event2->update($request->all());
         if ($event2) {
             return response()->json([
-                "status"=>true,
+                "status"=>"success",
                 "message"=>"update success",
                 "data"=>$event2
             ], 200);
         }else {
             return response()->json([
-                "status"=>false,
+                "status"=>"failed",
                 "message"=>"update failed"
             ], 400);
         }
@@ -135,13 +137,13 @@ class Event2Controller extends Controller
         $event2 = Event2::find($id);
         if (!$event2) {  
             return response()->json([
-                "status"=>false,
+                "status"=>"failed",
                 "message"=>"id not found"
             ], 400);
         }
         $event2->delete();
         return response()->json([
-            "status"=>true,
+            "status"=>"success",
             "message"=>"delete success"
         ], 200);
     }
