@@ -1,0 +1,21 @@
+name: Deploy CI/CD to Production
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing deploy to server using remote ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: "sabilunnashr.com"
+          username: "sabj8295"
+          key: "${{ secrets.KEY }}"
+          port: "2223"
+          script: |
+            cd /home/sabj8295/public_html/be.sabilunnashr.com
+            git pull
