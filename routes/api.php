@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Event2Controller;
+use App\Http\Controllers\Event3Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,11 +31,12 @@ Route::resource("paket", PaketController::class);
 Route::resource("member", MemberController::class);
 Route::resource("ramadhan", RamadhanController::class);
 Route::resource("event2", Event2Controller::class);
+Route::resource("event3", Event3Controller::class);
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
-    Route::post('register', [AuthController::class, 'register'] );
-    Route::post('login', [AuthController::class, 'login'] );
-    Route::post('logout', [AuthController::class, 'logout'] );
-    Route::post('refresh', [AuthController::class, 'refresh'] );
-    Route::post('me', [AuthController::class, 'me'] );
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::post('me', [AuthController::class, 'me']);
 });
