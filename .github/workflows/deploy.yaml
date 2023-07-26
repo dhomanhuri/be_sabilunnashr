@@ -14,7 +14,9 @@ jobs:
         with:
           host: "sabilunnashr.com"
           username: "sabj8295"
-          key: "${{ secrets.KEY }}"
+          key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDflqSlUJOpGi4GOJ9k0/WD4zX2EUG89gf2vD56uJtuZINEi+AV4e+yfqYpRgHpequKixwjzytaxnahdAZjxZx8HLjnYJ4BRhd
+IbqbEO0/ZEKO1ybgX9OJ2MDyRsxtSNmCP6hxksOkpvxawu5p2lOCAH3BShTk/useqlQvqWg+qJWzuV9tXL1x5f00u/9wddiXtu/tJnY05JAzbhOXiTUNsdxVB1Y2l6nsYFLfw4Cj
+WrGvXDKJ5/VmLPxgM6WLuyh0EGmZngyTlOjZBwSloL/6SeSdmnO8N9hty5txmhIMZLN0/MYj/sbDQWlJVCqMSy8l0oKyiR7pQFiJuRHP+xkd"
           port: "2223"
           script: |
             cd /home/sabj8295/public_html/be.sabilunnashr.com
